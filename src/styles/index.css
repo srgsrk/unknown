@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.player__content {
+  flex: 1 0 auto;
+  display: flex;
+}
+
+.player__bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  padding: 2em;
+
+  background: #fff;
+  border-top: 1px solid #808080;
+}
+
+.bar__track-info {
+  flex: 1 0 auto;
+  margin-left: 2em;
+}
+
+.bar__sidebar {
+  flex: 0 0 300px;
+  padding: 2em;
+}
+
+.cover__wrap {
+  max-width: 100%;
+}
+
+.cover {
+  display: block;
+  max-width: 100%;
+}
+
+.track {
+  text-align: center;
+}
+
+.track__name {
+  font-size: 14px;
+}
+
+.player__main {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+}
+
+.player__sidebar {
+  flex: 0 0 300px;
+  border-left: 1px solid #808080;
+  padding: 2em;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play,
+.prev,
+.next {
+  padding: 0;
+  font-family: "Segoe MDL2";
+  color: #000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  opacity: .5;
+  transition: opacity ease-out .1s;
+}
+
+.play {
+  margin-left: 1em;
+  font-size: 2em;
+}
+
+.next {
+  margin-left: 1em;
+}
+
+.prev,
+.next {
+  font-size: 1.5em;
+}
+
+.play:hover,
+.prev:hover,
+.next:hover {
+  opacity: 1;
+}
+
+.play:focus,
+.prev:focus,
+.next:focus {
+  outline: none;
+}
+
+.playlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.playlist__item:not(:first-child) {
+  margin-top: 1em;
+}
+
+.playlist__item.active .playlist__item-name  {
+  font-weight: bold;
+}
+
+.playlist__item-name {
+  font-size: 14px;
+}
