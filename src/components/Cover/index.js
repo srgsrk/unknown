@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Cover extends Component {
+class Index extends Component {
     render() {
         return (
             <div className="cover__wrap">
@@ -10,4 +10,4 @@ class Cover extends Component {
     }
 }
 
-export default Cover;
+export default Index;

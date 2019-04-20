@@ -12,33 +12,6 @@ body {
   box-sizing: border-box;
 }
 
-.app {
-
-}
-
-.player {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.player__content {
-  flex: 1 0 auto;
-  display: flex;
-}
-
-.player__bar {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-  padding: 2em;
-
-  background: #fff;
-  border-top: 1px solid #808080;
-}
-
 .bar__track-info {
   flex: 1 0 auto;
   margin-left: 2em;
@@ -64,20 +37,6 @@ body {
 
 .track__name {
   font-size: 14px;
-}
-
-.player__main {
-  flex: 1 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2em;
-}
-
-.player__sidebar {
-  flex: 0 0 300px;
-  border-left: 1px solid #808080;
-  padding: 2em;
 }
 
 .controls {

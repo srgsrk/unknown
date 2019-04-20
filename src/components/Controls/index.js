@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Play from "./Play";
-import Next from "./Next";
-import Prev from "./Prev";
+import Play from "../Play";
+import Next from "../Next";
+import Prev from "../Prev";
 
 class Controls extends Component {
     render() {

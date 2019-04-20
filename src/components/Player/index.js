@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import Controls from "./Controls";
-import Track from "./Track";
-import Cover from "./Cover"
-import Playlist from "./Playlist";
+import Controls from "../Controls";
+import Track from "../Track";
+import Cover from "../Cover"
+import Playlist from "../Playlist";
+import mediaLibrary from "../../media-library"
+import './style.css'
 
 class Player extends Component {
     constructor(props) {
@@ -10,54 +12,30 @@ class Player extends Component {
         this.state = {
             isPlay: false,
             currentTrackIndex: 0,
-            playlist: [
-                {
-                    name: 'AudioTest_(1)',
-                    src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg'
-                },
-                {
-                    name: 'AudioTest_(2)',
-                    src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(2).ogg'
-                },
-                {
-                    name: 'AudioTest_(3)',
-                    src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(3).ogg'
-                },
-                {
-                    name: 'AudioTest_(4)',
-                    src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(4).ogg'
-                },
-                {
-                    name: 'AudioTest_(5)',
-                    src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(5).ogg'
-                },
-            ]
+            mediaLibrary: mediaLibrary
         };
-        this.handleClick = this.handleClick.bind(this);
-        this.handlePrev = this.handlePrev.bind(this);
-        this.handleNext = this.handleNext.bind(this);
     }
 
-    handleClick() {
+    handleClick = () => {
         this.setState({
             isPlay: !this.state.isPlay
         });
     }
 
-    handlePrev() {
+    handlePrev = () => {
         const index = this.state.currentTrackIndex;
-        const playlist = this.state.playlist;
+        const mediaLibrary = this.state.mediaLibrary;
         if (index - 1 >= 0) {
             this.setState({currentTrackIndex: index - 1})
         } else {
-            this.setState({currentTrackIndex: playlist.length - 1})
+            this.setState({currentTrackIndex: mediaLibrary.length - 1})
         }
     }
 
-    handleNext() {
+    handleNext = () => {
         const index = this.state.currentTrackIndex;
-        const playlist = this.state.playlist;
-        if (index + 1 >= playlist.length) {
+        const mediaLibrary = this.state.mediaLibrary;
+        if (index + 1 >= mediaLibrary.length) {
             this.setState({currentTrackIndex: 0})
         } else {
             this.setState({currentTrackIndex: index + 1})
@@ -65,7 +43,7 @@ class Player extends Component {
     }
 
     render() {
-        const playlist = this.state.playlist;
+        const mediaLibrary = this.state.mediaLibrary;
         const index = this.state.currentTrackIndex;
         return (
             <div className="player">
@@ -73,13 +51,13 @@ class Player extends Component {
                     <div className="player__main">
                         <div className="player__cover">
                             <Cover
-                                text={playlist[index].name}
+                                text={mediaLibrary[index].name}
                             />
                         </div>
                     </div>
                     <div className="player__sidebar">
                         <Playlist
-                            playlist={playlist}
+                            mediaLibrary={mediaLibrary}
                             current={index}
                         />
                     </div>
@@ -95,9 +73,9 @@ class Player extends Component {
                     </div>
                     <div className="bar__track-info">
                         <Track
-                            src={playlist[index].src}
+                            src={mediaLibrary[index].src}
                             isPlay = {this.state.isPlay}
-                            name={playlist[index].name}
+                            name={mediaLibrary[index].name}
                         />
                     </div>
                     <div className="bar__sidebar"></div>
