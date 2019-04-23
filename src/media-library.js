@@ -1,22 +1,22 @@
 export default [
     {
-        name: 'AudioTest_(1)',
-        src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg'
+        name: 'Bass voice. (Cosmo Mizry, vocal and Casino with blended pickups.)',
+        src: 'http://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/5.01.mp3'
     },
     {
-        name: 'AudioTest_(2)',
-            src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(2).ogg'
+        name: 'Baritone voice. Note the consistent vibrato on all sustained tones. (Paul Lessard, vocal; Louis Fyne, piano.)',
+            src: 'http://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/5.02.mp3'
     },
     {
-        name: 'AudioTest_(3)',
-            src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(3).ogg'
+        name: 'Tenor voice, contrasting chest, head, falsetto, vibrato, and nasal tones. (Alex Brumel, vocal; Noah Wright, piano.)',
+            src: 'http://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/5.03.mp3'
     },
     {
-        name: 'AudioTest_(4)',
-            src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(4).ogg'
+        name: 'Alto voice. (Nina Sturtz, vocal; Dan Swithue, acoustic guitar for chords and Casino with bridge pickup for lead; Thom Mount, synthesized drums.)',
+            src: 'http://interface.audiovideoweb.com/lnk/va90web25003/companions/Foundations%20of%20Rock/5.04.mp3'
     },
     {
-        name: 'AudioTest_(5)',
-            src: 'http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(5).ogg'
+        name: 'Soprano voice. Note her use of multiphonics for a gritty sound [0:43]. Also note how the vibrato blooms on her last note, beginning with a full second of a straight, unwavering tone [1:13-1:14]. (Emily Bottorff, vocal; Mary Comstamie, piano.)',
+            src: 'http://interface.audiovideoweb.com/lnk/va90web25003/companions/Foundations%20of%20Rock/5.05.mp3'
     },
 ]

@@ -8,14 +8,14 @@ class Controls extends Component {
         return (
             <div className="controls">
                 <Prev
-                    handlePrev = {() => this.props.handlePrev()}
+                    handlePrev = {this.props.handlePrev}
                 />
                 <Play
-                    handleClick={() => this.props.handleClick()}
+                    handleClick={this.props.handleClick}
                     isPlay={this.props.isPlay}
                 />
                 <Next
-                    handleNext = {() => this.props.handleNext()}
+                    handleNext = {this.props.handleNext}
                 />
             </div>
         )

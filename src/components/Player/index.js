@@ -7,43 +7,40 @@ import mediaLibrary from "../../media-library"
 import './style.css'
 
 class Player extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isPlay: false,
-            currentTrackIndex: 0,
-            mediaLibrary: mediaLibrary
-        };
-    }
+    state = {
+        isPlay: false,
+        currentTrackIndex: 0,
+        mediaLibrary: mediaLibrary
+    };
 
     handleClick = () => {
         this.setState({
             isPlay: !this.state.isPlay
         });
-    }
+    };
 
     handlePrev = () => {
         const index = this.state.currentTrackIndex;
-        const mediaLibrary = this.state.mediaLibrary;
+        const {mediaLibrary} = this.state;
         if (index - 1 >= 0) {
             this.setState({currentTrackIndex: index - 1})
         } else {
             this.setState({currentTrackIndex: mediaLibrary.length - 1})
         }
-    }
+    };
 
     handleNext = () => {
         const index = this.state.currentTrackIndex;
-        const mediaLibrary = this.state.mediaLibrary;
+        const {mediaLibrary} = this.state;
         if (index + 1 >= mediaLibrary.length) {
             this.setState({currentTrackIndex: 0})
         } else {
             this.setState({currentTrackIndex: index + 1})
         }
-    }
+    };
 
     render() {
-        const mediaLibrary = this.state.mediaLibrary;
+        const {mediaLibrary} = this.state;
         const index = this.state.currentTrackIndex;
         return (
             <div className="player">
@@ -71,7 +68,7 @@ class Player extends Component {
                             isPlay={this.state.isPlay}
                         />
                     </div>
-                    <div className="bar__track-info">
+                    <div className="bar__track-block">
                         <Track
                             src={mediaLibrary[index].src}
                             isPlay = {this.state.isPlay}
