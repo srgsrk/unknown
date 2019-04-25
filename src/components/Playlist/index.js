@@ -1,4 +1,5 @@
 import React from 'react';
+import './playlist.scss'
 
 export default function Index(props) {
     const playlist = props.mediaLibrary.map((track, index) =>

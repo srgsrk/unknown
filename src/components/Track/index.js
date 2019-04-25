@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './track.scss'
 
 class Track extends Component {
     constructor(props) {

@@ -4,7 +4,7 @@ import Track from "../Track";
 import Cover from "../Cover"
 import Playlist from "../Playlist";
 import mediaLibrary from "../../media-library"
-import './style.css'
+import './player.scss'
 
 class Player extends Component {
     state = {

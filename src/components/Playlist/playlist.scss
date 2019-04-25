@@ -1,0 +1,17 @@
+.playlist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.playlist__item:not(:first-child) {
+    margin-top: 1em;
+}
+
+.playlist__item.active .playlist__item-name  {
+    font-weight: bold;
+}
+
+.playlist__item-name {
+    font-size: 14px;
+}
