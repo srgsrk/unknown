@@ -38,6 +38,7 @@ class Track extends Component {
                     ref = {this.audio}
                     onLoadedMetadata={() => this.props.readMeta(this.audio.current.duration)}
                     onTimeUpdate={() => this.props.updateTime(this.audio.current.currentTime)}
+                    onEnded={() => this.props.onEnded()}
                 />
             </div>
         )

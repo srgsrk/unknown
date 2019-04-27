@@ -14,11 +14,26 @@ class Player extends Component {
         mediaLibrary: mediaLibrary,
         currentTrackDuration: 100,
         currentTrackPosition: 0,
+        repeatMode: 'next'
     };
 
     handleClick = () => {
         this.setState({
             isPlay: !this.state.isPlay
+        });
+    };
+
+    handleStop = () => {
+        this.setState({
+            currentTrackPosition: 0,
+            isPlay: false
+        });
+    };
+
+    handleRepeat = () => {
+        this.setState({
+            currentTrackPosition: 0,
+            isPlay: true
         });
     };
 
@@ -52,6 +67,24 @@ class Player extends Component {
         this.setState({
             currentTrackPosition: position
         })
+    };
+
+    onEnded = () => {
+        const {repeatMode} = this.state;
+        switch (repeatMode) {
+            case 'next':
+                this.handleNext();
+                break;
+            case 'stop':
+                this.handleStop();
+                break;
+            case 'repeat':
+                this.handleRepeat();
+                break;
+            default:
+                console.log("WTF");
+
+        }
     };
 
     render() {
@@ -96,6 +129,7 @@ class Player extends Component {
                                 position={this.state.position}
                                 readMeta={this.readMeta}
                                 updateTime={this.updateTime}
+                                onEnded={this.onEnded}
                             />
                         </div>
                         <div className="bar__sidebar"></div>
