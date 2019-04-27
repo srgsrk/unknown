@@ -6,18 +6,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #808080;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.bar__track-block {
-  flex: 1 0 auto;
-  margin-left: 2em;
-}
+.bar{
+  &__track-block {
+    flex: 1 0 auto;
+    margin-left: 2em;
+  }
 
-.bar__sidebar {
-  flex: 0 0 300px;
-  padding: 2em;
+  &__sidebar {
+    flex: 0 0 300px;
+    padding: 2em;
+  }
+
+  &__content {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    padding: 1em 2em;
+
+    background: #fff;
+  }
 }

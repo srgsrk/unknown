@@ -5,6 +5,9 @@ class Track extends Component {
     constructor(props) {
         super(props);
         this.audio = React.createRef();
+        this.state = {
+            duration: null,
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -29,9 +32,12 @@ class Track extends Component {
                     {this.props.name}
                 </div>
                 <audio
+                    preload="metadata"
                     className="track__audio"
                     src={src}
                     ref = {this.audio}
+                    onLoadedMetadata={() => this.props.readMeta(this.audio.current.duration)}
+                    onTimeUpdate={() => this.props.updateTime(this.audio.current.currentTime)}
                 />
             </div>
         )

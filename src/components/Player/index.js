@@ -5,12 +5,15 @@ import Cover from "../Cover"
 import Playlist from "../Playlist";
 import mediaLibrary from "../../media-library"
 import './player.scss'
+import ProgressBar from "../ProgressBar";
 
 class Player extends Component {
     state = {
         isPlay: false,
         currentTrackIndex: 0,
-        mediaLibrary: mediaLibrary
+        mediaLibrary: mediaLibrary,
+        currentTrackDuration: 100,
+        currentTrackPosition: 0,
     };
 
     handleClick = () => {
@@ -39,6 +42,18 @@ class Player extends Component {
         }
     };
 
+    readMeta = (duration) => {
+        this.setState({
+            currentTrackDuration: duration
+        });
+    };
+
+    updateTime = (position) => {
+        this.setState({
+            currentTrackPosition: position
+        })
+    };
+
     render() {
         const {mediaLibrary} = this.state;
         const index = this.state.currentTrackIndex;
@@ -60,23 +75,32 @@ class Player extends Component {
                     </div>
                 </div>
                 <div className="player__bar">
-                    <div className="bar__controls">
-                        <Controls
-                            handleClick={this.handleClick}
-                            handlePrev={this.handlePrev}
-                            handleNext={this.handleNext}
-                            isPlay={this.state.isPlay}
-                        />
+                    <ProgressBar
+                        duration={this.state.currentTrackDuration}
+                        position={this.state.currentTrackPosition}
+                    />
+                    <div className="bar__content">
+                        <div className="bar__controls">
+                            <Controls
+                                handleClick={this.handleClick}
+                                handlePrev={this.handlePrev}
+                                handleNext={this.handleNext}
+                                isPlay={this.state.isPlay}
+                            />
+                        </div>
+                        <div className="bar__track-block">
+                            <Track
+                                src={mediaLibrary[index].src}
+                                isPlay={this.state.isPlay}
+                                name={mediaLibrary[index].name}
+                                position={this.state.position}
+                                readMeta={this.readMeta}
+                                updateTime={this.updateTime}
+                            />
+                        </div>
+                        <div className="bar__sidebar"></div>
                     </div>
-                    <div className="bar__track-block">
-                        <Track
-                            src={mediaLibrary[index].src}
-                            isPlay = {this.state.isPlay}
-                            name={mediaLibrary[index].name}
-                        />
-                    </div>
-                    <div className="bar__sidebar"></div>
-            </div>
+                </div>
             </div>
         )
     }
