@@ -3,6 +3,7 @@ import Play from "../Play";
 import Next from "../Next";
 import Prev from "../Prev";
 import './controls.scss'
+import RepeatMode from "../RepeatMode";
 
 class Controls extends Component {
     render() {
@@ -17,6 +18,10 @@ class Controls extends Component {
                 />
                 <Next
                     handleNext = {this.props.handleNext}
+                />
+                <RepeatMode
+                    repeatMode={this.props.repeatMode}
+                    handleRepeatMode = {this.props.handleRepeatMode}
                 />
             </div>
         )

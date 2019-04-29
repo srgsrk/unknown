@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Index extends Component {
+class Next extends Component {
     render() {
         return (
             <button
@@ -8,10 +8,10 @@ class Index extends Component {
                 onClick = {() => this.props.handleNext()}
                 title="Next"
             >
-                
+                <i className="fas fa-forward"></i>
             </button>
         )
     }
 }
 
-export default Index;
+export default Next;

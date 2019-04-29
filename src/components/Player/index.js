@@ -14,7 +14,14 @@ class Player extends Component {
         mediaLibrary: mediaLibrary,
         currentTrackDuration: 100,
         currentTrackPosition: 0,
-        repeatMode: 'next'
+        repeatMode: 'off',
+        repeatModeList: ['off', 'repeat-track', 'repeat-list']
+    };
+
+    isEnd = () => {
+        const index = this.state.currentTrackIndex;
+        const {mediaLibrary} = this.state;
+        return this.state.repeatMode === 'off' && index === mediaLibrary.length - 1
     };
 
     handleClick = () => {
@@ -23,38 +30,48 @@ class Player extends Component {
         });
     };
 
-    handleStop = () => {
+    stop = () => {
         this.setState({
             currentTrackPosition: 0,
             isPlay: false
         });
     };
 
-    handleRepeat = () => {
+    repeat = () => {
+        // TODO: Не хватает перемотки в начало
         this.setState({
             currentTrackPosition: 0,
             isPlay: true
         });
     };
 
-    handlePrev = () => {
+    prev = () => {
         const index = this.state.currentTrackIndex;
-        const {mediaLibrary} = this.state;
         if (index - 1 >= 0) {
             this.setState({currentTrackIndex: index - 1})
         } else {
-            this.setState({currentTrackIndex: mediaLibrary.length - 1})
+            this.state.isPlay && this.repeat();
         }
     };
 
-    handleNext = () => {
+    next = () => {
         const index = this.state.currentTrackIndex;
         const {mediaLibrary} = this.state;
         if (index + 1 >= mediaLibrary.length) {
-            this.setState({currentTrackIndex: 0})
+            !this.isEnd() && this.setState({currentTrackIndex: 0});
         } else {
             this.setState({currentTrackIndex: index + 1})
         }
+    };
+
+    changeRepeatMode = () => {
+        const {repeatMode} = this.state;
+        const {repeatModeList} = this.state;
+        const index = repeatModeList.indexOf(repeatMode);
+        const newMode = index + 1 >= repeatModeList.length ? repeatModeList[0] : repeatModeList[index + 1];
+        this.setState({
+            repeatMode: newMode
+        })
     };
 
     readMeta = (duration) => {
@@ -72,18 +89,11 @@ class Player extends Component {
     onEnded = () => {
         const {repeatMode} = this.state;
         switch (repeatMode) {
-            case 'next':
-                this.handleNext();
-                break;
-            case 'stop':
-                this.handleStop();
-                break;
-            case 'repeat':
-                this.handleRepeat();
+            case 'repeat-track':
+                this.repeat();
                 break;
             default:
-                console.log("WTF");
-
+                this.next();
         }
     };
 
@@ -96,40 +106,42 @@ class Player extends Component {
                     <div className="player__main">
                         <div className="player__cover">
                             <Cover
-                                text={mediaLibrary[index].name}
+                                text= {mediaLibrary[index].name}
                             />
                         </div>
                     </div>
                     <div className="player__sidebar">
                         <Playlist
-                            mediaLibrary={mediaLibrary}
-                            current={index}
+                            mediaLibrary= {mediaLibrary}
+                            current= {index}
                         />
                     </div>
                 </div>
                 <div className="player__bar">
                     <ProgressBar
-                        duration={this.state.currentTrackDuration}
-                        position={this.state.currentTrackPosition}
+                        duration= {this.state.currentTrackDuration}
+                        position= {this.state.currentTrackPosition}
                     />
                     <div className="bar__content">
                         <div className="bar__controls">
                             <Controls
-                                handleClick={this.handleClick}
-                                handlePrev={this.handlePrev}
-                                handleNext={this.handleNext}
-                                isPlay={this.state.isPlay}
+                                handleClick= {this.handleClick}
+                                handlePrev= {this.prev}
+                                handleNext= {this.next}
+                                handleRepeatMode= {this.changeRepeatMode}
+                                repeatMode= {this.state.repeatMode}
+                                isPlay= {this.state.isPlay}
                             />
                         </div>
                         <div className="bar__track-block">
                             <Track
-                                src={mediaLibrary[index].src}
-                                isPlay={this.state.isPlay}
-                                name={mediaLibrary[index].name}
-                                position={this.state.position}
-                                readMeta={this.readMeta}
-                                updateTime={this.updateTime}
-                                onEnded={this.onEnded}
+                                src= {mediaLibrary[index].src}
+                                isPlay= {this.state.isPlay}
+                                name= {mediaLibrary[index].name}
+                                position= {this.state.position}
+                                readMeta= {this.readMeta}
+                                updateTime= {this.updateTime}
+                                onEnded= {this.onEnded}
                             />
                         </div>
                         <div className="bar__sidebar"></div>

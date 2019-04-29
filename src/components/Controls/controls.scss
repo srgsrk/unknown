@@ -6,9 +6,10 @@
 
 .play,
 .prev,
-.next {
+.next,
+.repeat-mode {
   padding: 0;
-  font-family: "Segoe MDL2";
+  font-family: "Font Awesome 5 Free";
   color: #000;
   background: transparent;
   border: none;
@@ -23,12 +24,14 @@
   font-size: 2em;
 }
 
-.next {
+.next,
+.repeat-mode {
   margin-left: 1em;
 }
 
 .prev,
-.next {
+.next,
+.repeat-mode {
   font-size: 1.5em;
 }
 
@@ -40,6 +43,12 @@
 
 .play:focus,
 .prev:focus,
-.next:focus {
+.next:focus,
+.repeat-mode:focus {
   outline: none;
+}
+
+.repeat-mode.active {
+  opacity: 1;
+  color: #0078D7;
 }
