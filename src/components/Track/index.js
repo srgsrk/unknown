@@ -14,6 +14,13 @@ class Track extends Component {
         if (this.props.isPlay !== prevProps.isPlay || this.props.src !== prevProps.src) {
             this.props.isPlay ? this.play() : this.pause();
         }
+        if (this.props.newPosition !== prevProps.newPosition) {
+            this.goTo(this.props.newPosition);
+        }
+    }
+
+    goTo(position) {
+        this.audio.current.currentTime = position;
     }
 
     play() {

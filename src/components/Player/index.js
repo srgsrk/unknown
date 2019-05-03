@@ -15,7 +15,8 @@ class Player extends Component {
         currentTrackDuration: 100,
         currentTrackPosition: 0,
         repeatMode: 'off',
-        repeatModeList: ['off', 'repeat-track', 'repeat-list']
+        repeatModeList: ['off', 'repeat-track', 'repeat-list'],
+        newPosition: 0
     };
 
     isEnd = () => {
@@ -86,62 +87,76 @@ class Player extends Component {
         })
     };
 
+    calcProgress = (e) => {
+        const progress = e.currentTarget;
+        const width = progress.offsetWidth;
+        const left = progress.getBoundingClientRect().left;
+        const pointer = e.clientX;
+        const position = Math.round((pointer - left) / width * 100);
+        this.setPosition(position);
+    };
+
+    setPosition = (percent) => {
+        const {currentTrackDuration} = this.state;
+        const newPosition = currentTrackDuration * percent / 100;
+        this.setState({
+            newPosition: newPosition,
+            currentTrackPosition: newPosition
+        });
+    };
+
     onEnded = () => {
         const {repeatMode} = this.state;
-        switch (repeatMode) {
-            case 'repeat-track':
-                this.repeat();
-                break;
-            default:
-                this.next();
-        }
+        repeatMode === 'repeat-track' ? this.repeat() : this.next();
     };
 
     render() {
         const {mediaLibrary} = this.state;
         const index = this.state.currentTrackIndex;
         return (
-            <div className="player">
-                <div className="player__content">
-                    <div className="player__main">
-                        <div className="player__cover">
+            <div className = "player">
+                <div className = "player__content">
+                    <div className = "player__main">
+                        <div className = "player__cover">
                             <Cover
-                                text= {mediaLibrary[index].name}
+                                text = {mediaLibrary[index].name}
                             />
                         </div>
                     </div>
-                    <div className="player__sidebar">
+                    <div className = "player__sidebar">
                         <Playlist
-                            mediaLibrary= {mediaLibrary}
-                            current= {index}
+                            mediaLibrary = {mediaLibrary}
+                            current = {index}
                         />
                     </div>
                 </div>
                 <div className="player__bar">
                     <ProgressBar
-                        duration= {this.state.currentTrackDuration}
-                        position= {this.state.currentTrackPosition}
+                        duration = {this.state.currentTrackDuration}
+                        position = {this.state.currentTrackPosition}
+                        calcProgress = {this.calcProgress}
                     />
                     <div className="bar__content">
                         <div className="bar__controls">
                             <Controls
-                                handleClick= {this.handleClick}
-                                handlePrev= {this.prev}
-                                handleNext= {this.next}
-                                handleRepeatMode= {this.changeRepeatMode}
-                                repeatMode= {this.state.repeatMode}
-                                isPlay= {this.state.isPlay}
+                                handleClick = {this.handleClick}
+                                handlePrev = {this.prev}
+                                handleNext = {this.next}
+                                handleRepeatMode = {this.changeRepeatMode}
+                                repeatMode = {this.state.repeatMode}
+                                isPlay = {this.state.isPlay}
                             />
                         </div>
                         <div className="bar__track-block">
                             <Track
-                                src= {mediaLibrary[index].src}
-                                isPlay= {this.state.isPlay}
-                                name= {mediaLibrary[index].name}
-                                position= {this.state.position}
-                                readMeta= {this.readMeta}
-                                updateTime= {this.updateTime}
-                                onEnded= {this.onEnded}
+                                src = {mediaLibrary[index].src}
+                                isPlay = {this.state.isPlay}
+                                name = {mediaLibrary[index].name}
+                                position = {this.state.position}
+                                readMeta = {this.readMeta}
+                                updateTime = {this.updateTime}
+                                onEnded = {this.onEnded}
+                                newPosition = {this.state.newPosition}
                             />
                         </div>
                         <div className="bar__sidebar"></div>
