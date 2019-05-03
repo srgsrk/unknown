@@ -8,7 +8,7 @@ class Next extends Component {
                 onClick = {() => this.props.handleNext()}
                 title="Next"
             >
-                <i className="fas fa-forward"></i>
+                
             </button>
         )
     }

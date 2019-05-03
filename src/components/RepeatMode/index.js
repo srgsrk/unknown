@@ -6,26 +6,25 @@ class RepeatMode extends Component {
         let title;
         switch (repeatMode) {
             case 'off':
-                title = 'Повтор воспроизведения выключен';
+                title = 'Повтор выключен';
                 break;
             case 'repeat-track':
-                title = 'Повтор воспроизведения трека включен';
+                title = 'Повтор трека включен';
                 break;
             case 'repeat-list':
-                title = 'Повтор воспроизведения плейлиста включен';
+                title = 'Повтор плейлиста включен';
                 break;
             default:
                 title = 'Поменять режим повтора';
 
         }
         return (
-            // TODO: Добавить смену title
             <button
                 className={"repeat-mode " + (this.props.repeatMode === 'off' ? '' : 'active')}
                 onClick = {() => this.props.handleRepeatMode()}
                 title={title}
             >
-                {this.props.repeatMode === 'repeat-track' ? <i className="fas fa-redo-alt"></i> : <i className="fas fa-redo-alt"></i>}
+                {this.props.repeatMode === 'repeat-track' ? '' : ''}
             </button>
         )
     }

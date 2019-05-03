@@ -34,7 +34,8 @@ class Player extends Component {
     stop = () => {
         this.setState({
             currentTrackPosition: 0,
-            isPlay: false
+            isPlay: false,
+            newPosition: 0
         });
     };
 
@@ -159,7 +160,6 @@ class Player extends Component {
                                 newPosition = {this.state.newPosition}
                             />
                         </div>
-                        <div className="bar__sidebar"></div>
                     </div>
                 </div>
             </div>

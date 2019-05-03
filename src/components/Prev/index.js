@@ -8,7 +8,7 @@ class Prev extends Component {
                 onClick = {() => this.props.handlePrev()}
                 title = "Previous"
             >
-                <i className="fas fa-backward"></i>
+                
             </button>
         )
     }
