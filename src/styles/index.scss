@@ -16,6 +16,12 @@ body {
 .bar{
   &__track-block {
     flex: 1 0 auto;
+    margin-left: 4em;
+    display: flex;
+    align-items: center;
+  }
+
+  &__track {
     margin-left: 2em;
   }
 
@@ -25,8 +31,12 @@ body {
     align-items: center;
     width: 100%;
 
-    padding: 1em 2em;
+    padding: 0.5em 2em 1em;
 
     background: #fff;
+  }
+
+  &__cover {
+    max-width: 60px;
   }
 }

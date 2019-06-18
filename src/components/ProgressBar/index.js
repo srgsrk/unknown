@@ -8,22 +8,21 @@ class ProgressBar extends Component {
         let seconds = Math.round(time - minutes * 60);
         seconds = seconds < 10 ? '0' + seconds : seconds;
         return minutes + ':' + seconds;
-    }
+    };
 
     render() {
-        const {duration} = this.props;
-        const {position} = this.props;
+        const {duration, position, calcProgress} = this.props;
         return (
             <div className="progress">
-                <progress
-                    className="progress__bar"
-                    max={this.props.duration}
-                    value={this.props.position}
-                    onClick={(e) => this.props.calcProgress(e)}
-                />
                 <div className="progress__stat">
                     {this.toMinutes(position)} / {this.toMinutes(duration)}
                 </div>
+                <progress
+                    className="progress__bar"
+                    max={duration}
+                    value={position}
+                    onClick={(e) => calcProgress(e)}
+                />
             </div>
         )
     }

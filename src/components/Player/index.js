@@ -20,9 +20,8 @@ class Player extends Component {
     };
 
     isEnd = () => {
-        const index = this.state.currentTrackIndex;
-        const {mediaLibrary} = this.state;
-        return this.state.repeatMode === 'off' && index === mediaLibrary.length - 1
+        const {currentTrackIndex, mediaLibrary} = this.state;
+        return this.state.repeatMode === 'off' && currentTrackIndex === mediaLibrary.length - 1
     };
 
     handleClick = () => {
@@ -43,32 +42,31 @@ class Player extends Component {
         // TODO: Не хватает перемотки в начало
         this.setState({
             currentTrackPosition: 0,
-            isPlay: true
+            isPlay: true,
+            newPosition: 0
         });
     };
 
     prev = () => {
-        const index = this.state.currentTrackIndex;
-        if (index - 1 >= 0) {
-            this.setState({currentTrackIndex: index - 1})
+        const {currentTrackIndex} = this.state;
+        if (currentTrackIndex - 1 >= 0) {
+            this.setState({currentTrackIndex: currentTrackIndex - 1})
         } else {
             this.state.isPlay && this.repeat();
         }
     };
 
     next = () => {
-        const index = this.state.currentTrackIndex;
-        const {mediaLibrary} = this.state;
-        if (index + 1 >= mediaLibrary.length) {
+        const {currentTrackIndex, mediaLibrary} = this.state;
+        if (currentTrackIndex + 1 >= mediaLibrary.length) {
             !this.isEnd() && this.setState({currentTrackIndex: 0});
         } else {
-            this.setState({currentTrackIndex: index + 1})
+            this.setState({currentTrackIndex: currentTrackIndex + 1})
         }
     };
 
     changeRepeatMode = () => {
-        const {repeatMode} = this.state;
-        const {repeatModeList} = this.state;
+        const {repeatMode, repeatModeList} = this.state;
         const index = repeatModeList.indexOf(repeatMode);
         const newMode = index + 1 >= repeatModeList.length ? repeatModeList[0] : repeatModeList[index + 1];
         this.setState({
@@ -111,30 +109,37 @@ class Player extends Component {
         repeatMode === 'repeat-track' ? this.repeat() : this.next();
     };
 
+    selectTrack = (index) => {
+        this.setState({
+                currentTrackIndex: index,
+            }
+        )
+    };
+
     render() {
-        const {mediaLibrary} = this.state;
-        const index = this.state.currentTrackIndex;
+        const {currentTrackIndex, mediaLibrary, currentTrackDuration, currentTrackPosition,repeatMode, isPlay, position, newPosition} = this.state;
         return (
             <div className = "player">
                 <div className = "player__content">
                     <div className = "player__main">
                         <div className = "player__cover">
                             <Cover
-                                text = {mediaLibrary[index].name}
+                                text = {mediaLibrary[currentTrackIndex].name}
                             />
                         </div>
                     </div>
                     <div className = "player__sidebar">
                         <Playlist
                             mediaLibrary = {mediaLibrary}
-                            current = {index}
+                            current = {currentTrackIndex}
+                            selectTrack = {this.selectTrack}
                         />
                     </div>
                 </div>
                 <div className="player__bar">
                     <ProgressBar
-                        duration = {this.state.currentTrackDuration}
-                        position = {this.state.currentTrackPosition}
+                        duration = {currentTrackDuration}
+                        position = {currentTrackPosition}
                         calcProgress = {this.calcProgress}
                     />
                     <div className="bar__content">
@@ -144,21 +149,28 @@ class Player extends Component {
                                 handlePrev = {this.prev}
                                 handleNext = {this.next}
                                 handleRepeatMode = {this.changeRepeatMode}
-                                repeatMode = {this.state.repeatMode}
-                                isPlay = {this.state.isPlay}
+                                repeatMode = {repeatMode}
+                                isPlay = {isPlay}
                             />
                         </div>
                         <div className="bar__track-block">
-                            <Track
-                                src = {mediaLibrary[index].src}
-                                isPlay = {this.state.isPlay}
-                                name = {mediaLibrary[index].name}
-                                position = {this.state.position}
-                                readMeta = {this.readMeta}
-                                updateTime = {this.updateTime}
-                                onEnded = {this.onEnded}
-                                newPosition = {this.state.newPosition}
-                            />
+                            <div className="bar__cover">
+                                <Cover
+                                    text = {mediaLibrary[currentTrackIndex].name}
+                                />
+                            </div>
+                            <div className="bar__track">
+                                <Track
+                                    src = {mediaLibrary[currentTrackIndex].src}
+                                    isPlay = {isPlay}
+                                    name = {mediaLibrary[currentTrackIndex].name}
+                                    position = {position}
+                                    readMeta = {this.readMeta}
+                                    updateTime = {this.updateTime}
+                                    onEnded = {this.onEnded}
+                                    newPosition = {newPosition}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

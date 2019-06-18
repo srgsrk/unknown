@@ -7,14 +7,12 @@
   }
 
   &__stat {
-    position: absolute;
-    top: 4px;
-    left: 2em;
+    padding-right: 2em;
     font-size: 14px;
     font-style: italic;
     line-height: 16px;
     color: #000;
-    text-align: center;
+    text-align: right;
   }
 }
 

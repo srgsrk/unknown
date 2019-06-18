@@ -20,11 +20,11 @@ class RepeatMode extends Component {
         }
         return (
             <button
-                className={"repeat-mode " + (this.props.repeatMode === 'off' ? '' : 'active')}
+                className={"repeat-mode " + (repeatMode === 'off' ? '' : 'active')}
                 onClick = {() => this.props.handleRepeatMode()}
                 title={title}
             >
-                {this.props.repeatMode === 'repeat-track' ? '' : ''}
+                {repeatMode === 'repeat-track' ? '' : ''}
             </button>
         )
     }

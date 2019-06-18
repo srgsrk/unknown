@@ -19,24 +19,18 @@ class Track extends Component {
         }
     }
 
-    goTo(position) {
-        this.audio.current.currentTime = position;
-    }
+    goTo = (position) => this.audio.current.currentTime = position;
 
-    play() {
-        this.audio.current.play();
-    }
+    play = () => this.audio.current.play();
 
-    pause() {
-        this.audio.current.pause();
-    }
+    pause = () => this.audio.current.pause();
 
     render() {
-        const src = this.props.src;
+        const {src, name} = this.props;
         return (
             <div className="track">
                 <div className="track__name">
-                    {this.props.name}
+                    {name}
                 </div>
                 <audio
                     preload="metadata"

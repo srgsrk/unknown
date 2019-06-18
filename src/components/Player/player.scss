@@ -19,6 +19,7 @@
 
 .player__sidebar {
     flex: 0 0 300px;
-    //border-left: 1px solid #808080;
+    max-width: 300px;
     padding: 2em;
+    border-left: 1px solid #808080;
 }
