@@ -26,7 +26,7 @@ class Track extends Component {
     pause = () => this.audio.current.pause();
 
     render() {
-        const {src, name} = this.props;
+        const {src, name, readMeta, updateTime, onEnded} = this.props;
         return (
             <div className="track">
                 <div className="track__name">
@@ -37,9 +37,9 @@ class Track extends Component {
                     className="track__audio"
                     src={src}
                     ref = {this.audio}
-                    onLoadedMetadata={() => this.props.readMeta(this.audio.current.duration)}
-                    onTimeUpdate={() => this.props.updateTime(this.audio.current.currentTime)}
-                    onEnded={() => this.props.onEnded()}
+                    onLoadedMetadata={() => readMeta(this.audio.current.duration)}
+                    onTimeUpdate={() => updateTime(this.audio.current.currentTime)}
+                    onEnded={() => onEnded()}
                 />
             </div>
         )

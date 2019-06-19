@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 class Index extends Component {
     render() {
+        const {handlePlay, isPlay} = this.props;
         return (
             <button
                 className="play"
-                onClick = {() => this.props.handleClick()}
-                title = {this.props.isPlay ? 'Pause' : 'Play'}
+                onClick = {() => handlePlay()}
+                title = {isPlay ? 'Pause' : 'Play'}
             >
-                {this.props.isPlay ? '' : '' }
+                {isPlay ? '' : '' }
             </button>
         )
     }

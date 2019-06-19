@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import mediaLibrary from "../../media-library"
 import Controls from "../Controls";
 import Track from "../Track";
 import Cover from "../Cover"
 import Playlist from "../Playlist";
-import mediaLibrary from "../../media-library"
-import './player.scss'
 import ProgressBar from "../ProgressBar";
+import './player.scss';
 
 class Player extends Component {
     state = {
@@ -20,13 +20,15 @@ class Player extends Component {
     };
 
     isEnd = () => {
-        const {currentTrackIndex, mediaLibrary} = this.state;
-        return this.state.repeatMode === 'off' && currentTrackIndex === mediaLibrary.length - 1
+        const {currentTrackIndex, mediaLibrary, repeatMode} = this.state;
+        return repeatMode === 'off' && currentTrackIndex === mediaLibrary.length - 1
     };
 
-    handleClick = () => {
-        this.setState({
-            isPlay: !this.state.isPlay
+    play = () => {
+        this.setState(({isPlay}) => {
+            return {
+                isPlay: !isPlay
+            }
         });
     };
 
@@ -145,7 +147,7 @@ class Player extends Component {
                     <div className="bar__content">
                         <div className="bar__controls">
                             <Controls
-                                handleClick = {this.handleClick}
+                                handlePlay = {this.play}
                                 handlePrev = {this.prev}
                                 handleNext = {this.next}
                                 handleRepeatMode = {this.changeRepeatMode}

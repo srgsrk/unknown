@@ -7,21 +7,22 @@ import RepeatMode from "../RepeatMode";
 
 class Controls extends Component {
     render() {
+        const {isPlay, handlePrev, handlePlay, handleNext, repeatMode, handleRepeatMode} = this.props;
         return (
             <div className="controls">
                 <Prev
-                    handlePrev = {this.props.handlePrev}
+                    handlePrev = {handlePrev}
                 />
                 <Play
-                    handleClick={this.props.handleClick}
-                    isPlay={this.props.isPlay}
+                    handlePlay={handlePlay}
+                    isPlay={isPlay}
                 />
                 <Next
-                    handleNext = {this.props.handleNext}
+                    handleNext = {handleNext}
                 />
                 <RepeatMode
-                    repeatMode={this.props.repeatMode}
-                    handleRepeatMode = {this.props.handleRepeatMode}
+                    repeatMode={repeatMode}
+                    handleRepeatMode = {handleRepeatMode}
                 />
             </div>
         )
